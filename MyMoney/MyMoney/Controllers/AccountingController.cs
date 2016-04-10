@@ -22,10 +22,15 @@ namespace MyMoney.Controllers
 
         [HttpPost]
         public ActionResult Add(AccountingViewModel pageData)
-        {            
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(pageData);
+            }
+
             accountings.Add(pageData);
-            ModelState.Clear();
-            return View();
+
+            return RedirectToAction("Add");
         }
 
         [ChildActionOnly]
