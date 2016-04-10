@@ -20,7 +20,7 @@
    EnumHelper.GetSelectList(typeof(AccountingType)),
    "請選擇",
    new { @class = "form-control" })
-                    @*@Html.DropDownListFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })*@
+
                     @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
                 </div>
             </div>
