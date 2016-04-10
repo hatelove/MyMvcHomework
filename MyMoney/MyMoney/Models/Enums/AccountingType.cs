@@ -2,7 +2,7 @@
 {
     public enum AccountingType
     {
-        Income,
-        Expenses
+        收入,
+        支出
     }
 }

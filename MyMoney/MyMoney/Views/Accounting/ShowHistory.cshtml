@@ -4,6 +4,9 @@
     <tr>
         <th>#</th>
         <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Amount)
         </th>
         <th>
@@ -19,6 +22,9 @@
     {
         <tr>
             <td>@(index)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
