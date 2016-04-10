@@ -11,6 +11,7 @@ namespace MyMoney.Models.ViewModels
         public int Amount { get; set; }
 
         [Display(Name = "日期")]
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime Date { get; set; }
 
