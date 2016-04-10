@@ -24,6 +24,7 @@ namespace MyMoney.Controllers
         public ActionResult Add(AccountingViewModel pageData)
         {            
             accountings.Add(pageData);
+            ModelState.Clear();
             return View();
         }
 
