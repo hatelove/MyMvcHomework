@@ -21,8 +21,9 @@ namespace MyMoney.Controllers
         {
             var history = new List<AccountingViewModel>
             {
-                new AccountingViewModel {Type=AccountingType.Income, Amount=100, Date = new DateTime(2016,4,10), Remark="發傳單" },
-                new AccountingViewModel {Type=AccountingType.Expenses, Amount=40, Date = new DateTime(2016,4,11), Remark="咖啡" },
+                new AccountingViewModel {Type=AccountingType.Income, Amount=10000, Date = new DateTime(2016,4,10), Remark="發傳單" },
+                new AccountingViewModel {Type=AccountingType.Expenses, Amount=4000, Date = new DateTime(2016,4,11), Remark="咖啡" },
+                new AccountingViewModel {Type=AccountingType.Income, Amount=91995, Date = new DateTime(2016,5,10), Remark="TDD training" },
             };
 
             return View(history);

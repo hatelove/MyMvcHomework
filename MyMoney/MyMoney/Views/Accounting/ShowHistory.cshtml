@@ -1,16 +1,8 @@
 ﻿@model IEnumerable<MyMoney.Models.ViewModels.AccountingViewModel>
 
-@{
-    ViewBag.Title = "ShowHistory";
-}
-
-<h2>ShowHistory</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<table class="table table-bordered table-hover">
     <tr>
+        <th>#</th>
         <th>
             @Html.DisplayNameFor(model => model.Amount)
         </th>
@@ -19,27 +11,24 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Remark)
-        </th>
-        <th></th>
+        </th>        
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Remark)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
+    @{ var index = 1;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@(index)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remark)
+            </td>           
+        </tr>
+        index++;
+    }
 </table>
