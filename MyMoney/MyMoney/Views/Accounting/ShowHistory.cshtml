@@ -21,7 +21,7 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>@(index)</td>
+            <td>@(index++)</td>
             <td>
                 @Html.DisplayFor(modelItem => item.Type)
             </td>
@@ -34,7 +34,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Remark)
             </td>           
-        </tr>
-        index++;
+        </tr>        
     }
 </table>
