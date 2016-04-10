@@ -273,6 +273,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_AccountingLayout.cshtml" />
     <Content Include="Views\Accounting\Index.cshtml" />
+    <Content Include="Views\Accounting\ShowHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

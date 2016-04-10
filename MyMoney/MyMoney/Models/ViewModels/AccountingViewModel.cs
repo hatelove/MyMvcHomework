@@ -3,7 +3,7 @@ using MyMoney.Models.Enums;
 
 namespace MyMoney.Models.ViewModels
 {
-    class AccountingViewModel
+    public class AccountingViewModel
     {
         public int Amount { get; internal set; }
         public DateTime Date { get; internal set; }
