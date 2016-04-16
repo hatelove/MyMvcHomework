@@ -1,20 +1,17 @@
-﻿using MyMoney.Models.Enums;
+﻿using MyMoney.Models;
+using MyMoney.Models.Enums;
 using MyMoney.Models.ViewModels;
 using System;
-using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace MyMoney.Controllers
 {
     public class AccountingController : Controller
     {
-        private static List<AccountingViewModel> accountings = new List<AccountingViewModel>
-            {
-                new AccountingViewModel {Type=AccountingType.收入, Amount=10000, Date = new DateTime(2016,4,10), Remark="發傳單" },
-                new AccountingViewModel {Type=AccountingType.支出, Amount=4000, Date = new DateTime(2016,4,11), Remark="咖啡" },
-                new AccountingViewModel {Type=AccountingType.收入, Amount=91995, Date = new DateTime(2016,5,10), Remark="TDD training" },
-            };
-              
+        private AccountingModels accountDbContext = new AccountingModels();
+
         public ActionResult Add()
         {
             return View();
@@ -28,7 +25,17 @@ namespace MyMoney.Controllers
                 return View(pageData);
             }
 
-            accountings.Add(pageData);
+            var accountBook = new AccountBook
+            {
+                Amounttt = pageData.Amount,
+                Categoryyy = (int)pageData.Type,
+                Dateee = pageData.Date,
+                Remarkkk = pageData.Remark,
+                Id = Guid.NewGuid()
+            };
+
+            this.accountDbContext.AccountBook.Add(accountBook);
+            this.accountDbContext.SaveChanges();
 
             return RedirectToAction("Add");
         }
@@ -36,7 +43,25 @@ namespace MyMoney.Controllers
         [ChildActionOnly]
         public ActionResult ShowHistory()
         {
-            return View(accountings);
+            var accountingBooks = this.accountDbContext.AccountBook
+                .OrderByDescending(x => x.Dateee)
+                .Take(10)
+                .Select(x =>
+                new AccountingViewModel
+                {
+                    Amount = x.Amounttt,
+                    Date = x.Dateee,
+                    Remark = x.Remarkkk,
+                    Type = (AccountingType)x.Categoryyy
+                });
+
+            return View(accountingBooks);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            accountDbContext.Dispose();
+            base.Dispose(disposing);
         }
     }
 }
