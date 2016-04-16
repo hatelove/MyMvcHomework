@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="jumbotron">
@@ -9,6 +10,16 @@
 </div>
 
 <div class="row">
+    <div class="col-md-4">
+        <h2>Day2 homework</h2>
+        <p>
+            實際透過DB來存取記帳本資料
+        </p>
+        <p>
+            @Html.ActionLink("記帳本由此去", "Add", "Accounting")
+        </p>
+    </div>
+
     <div class="col-md-4">
         <h2>Getting started</h2>
         <p>
