@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<MyMoney.Models.ViewModels.AccountingViewModel>
-
+@using MyMoney.Models.Enums;
 @{
     Layout = null;
 }
@@ -26,7 +26,8 @@
         <tr>
             <td>@(index++)</td>
             <td>
-                @Html.DisplayFor(modelItem => item.Type)
+                @*@Html.DisplayFor(modelItem => item.Type)*@
+                @HighlightType(item.Type)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Amount)
@@ -40,3 +41,8 @@
         </tr>
     }
 </table>
+
+@helper HighlightType(AccountingType type)
+{
+    <span style="color:@(type== AccountingType.支出 ? "red" : "blue")">@(type.ToString())</span>
+}
