@@ -21,6 +21,7 @@ namespace MyMoney.Models.ViewModels
         public DateTime Date { get; set; }
 
         [Display(Name = "備註")]
+        [DataType(DataType.MultilineText)]
         [Required]
         public string Remark { get; set; }
 
