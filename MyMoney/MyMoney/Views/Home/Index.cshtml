@@ -11,10 +11,25 @@
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Day2 homework</h2>
-        <p>
-            實際透過DB來存取記帳本資料
-        </p>
+        <h2>Day3 homework</h2>
+        <ul>
+            <li>必須新增進DB中</li>
+            <li>
+                所有欄位必填
+                <ul>
+                    <li>金額只能輸入正整數</li>
+                    <li>日期不得大於今天</li>
+                    <li>備註最大長度100字元</li>
+                </ul>
+            </li>
+            <li>
+                列表加入顏色變換
+                <ul>
+                    <li>類型的支出，顯示為紅色</li>
+                    <li>類型的收入，顯示為藍色</li>
+                </ul>
+            </li>
+        </ul>
         <p>
             @Html.ActionLink("記帳本由此去", "Add", "Accounting")
         </p>
