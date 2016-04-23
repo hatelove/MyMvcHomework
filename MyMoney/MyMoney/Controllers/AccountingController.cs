@@ -4,6 +4,7 @@ using MyMoney.Models.ViewModels;
 using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace MyMoney.Controllers
@@ -22,7 +23,12 @@ namespace MyMoney.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(pageData);
+                var errors = ModelState.Where(x => x.Value.Errors.Count > 0)
+                    .SelectMany(x => x.Value.Errors, (x, y) => y.ErrorMessage)
+                    .ToArray();
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                //var errorMessage = string.Join(@",", errors);
+                return Json(errors, "application/json; charset=utf-8");
             }
 
             var accountBook = new AccountBook

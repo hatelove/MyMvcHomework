@@ -7,7 +7,7 @@
     Layout = "~/Views/Shared/_AccountingLayout.cshtml";
 }
 <div class="well">
-    @using (Ajax.BeginForm("AddForAjax", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "history" }))
+    @using (Ajax.BeginForm("AddForAjax", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "history", OnFailure = "ajaxFailedFunc" }))
     {
         @Html.AntiForgeryToken()
 
@@ -69,4 +69,5 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/jquery-2.2.1.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/AjaxEventHandlers.js"></script>
 }
