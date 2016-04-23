@@ -23,7 +23,7 @@ namespace MyMoney.Models.ViewModels
         [Display(Name = "備註")]
         [DataType(DataType.MultilineText)]
         [Required]
-        [TextAreaStringLength(3, ErrorMessage = "{0}長度不得超過{1}")]
+        [TextAreaStringLength(100, ErrorMessage = "{0}長度不得超過{1}")]
         public string Remark { get; set; }
 
         [Display(Name = "類別")]
