@@ -16,13 +16,14 @@ namespace MyMoney.Models.ViewModels
         [Display(Name = "日期")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
-        [Required]        
+        [Required]
         [DateBeforeToday(ErrorMessage = "{0}不可大於今天")]
         public DateTime Date { get; set; }
 
         [Display(Name = "備註")]
         [DataType(DataType.MultilineText)]
         [Required]
+        [TextAreaStringLength(3, ErrorMessage = "{0}長度不得超過{1}")]
         public string Remark { get; set; }
 
         [Display(Name = "類別")]
