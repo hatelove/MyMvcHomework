@@ -7,7 +7,7 @@
     Layout = "~/Views/Shared/_AccountingLayout.cshtml";
 }
 <div class="well">
-    @using (Html.BeginForm())
+    @using (Ajax.BeginForm("AddForAjax", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "history" }))
     {
         @Html.AntiForgeryToken()
 
@@ -52,6 +52,7 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Create" class="btn btn-default" />
+                    @DateTime.Now
                 </div>
             </div>
         </div>
@@ -59,11 +60,13 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12" id="history">
         @Html.Action("ShowHistory")
     </div>
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-2.2.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 }

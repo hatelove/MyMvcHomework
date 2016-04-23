@@ -18,6 +18,29 @@ namespace MyMoney.Controllers
         }
 
         [HttpPost]
+        public ActionResult AddForAjax(AccountingViewModel pageData)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(pageData);
+            }
+
+            var accountBook = new AccountBook
+            {
+                Amounttt = pageData.Amount,
+                Categoryyy = (int)pageData.Type,
+                Dateee = pageData.Date,
+                Remarkkk = pageData.Remark,
+                Id = Guid.NewGuid()
+            };
+
+            this.accountDbContext.AccountBook.Add(accountBook);
+            this.accountDbContext.SaveChanges();
+
+            return PartialView("ShowHistory", this.GetLastAccountings(10));
+        }
+
+        [HttpPost]
         public ActionResult Add(AccountingViewModel pageData)
         {
             if (!ModelState.IsValid)
@@ -40,22 +63,26 @@ namespace MyMoney.Controllers
             return RedirectToAction("Add");
         }
 
-        [ChildActionOnly]
         public ActionResult ShowHistory()
         {
-            var accountingBooks = this.accountDbContext.AccountBook
-                .OrderByDescending(x => x.Dateee)
-                .Take(10)
-                .Select(x =>
-                new AccountingViewModel
-                {
-                    Amount = x.Amounttt,
-                    Date = x.Dateee,
-                    Remark = x.Remarkkk,
-                    Type = (AccountingType)x.Categoryyy
-                });
+            IQueryable<AccountingViewModel> accountingBooks = GetLastAccountings(10);
 
             return View(accountingBooks);
+        }
+
+        private IQueryable<AccountingViewModel> GetLastAccountings(int recordCount)
+        {
+            return this.accountDbContext.AccountBook
+                            .OrderByDescending(x => x.Dateee)
+                            .Take(recordCount)
+                            .Select(x =>
+                            new AccountingViewModel
+                            {
+                                Amount = x.Amounttt,
+                                Date = x.Dateee,
+                                Remark = x.Remarkkk,
+                                Type = (AccountingType)x.Categoryyy
+                            });
         }
 
         protected override void Dispose(bool disposing)
