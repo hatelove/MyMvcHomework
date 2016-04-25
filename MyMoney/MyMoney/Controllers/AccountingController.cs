@@ -2,6 +2,7 @@
 using MyMoney.Models.Enums;
 using MyMoney.Models.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -23,12 +24,21 @@ namespace MyMoney.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var errors = ModelState.Where(x => x.Value.Errors.Count > 0)
-                    .SelectMany(x => x.Value.Errors, (x, y) => y.ErrorMessage)
-                    .ToArray();
+                var errorFields = ModelState.Where(d => d.Value.Errors.Any())
+                     .Select(x => new { x.Key, x.Value.Errors });
+
+                var errors = new List<AjaxErrorResultViewModel>();
+                foreach (var item in errorFields)
+                {
+                    errors.Add(item.Errors.Select(
+                        d => new AjaxErrorResultViewModel()
+                        {
+                            ClientId = item.Key,
+                            ErrorMessage = d.ErrorMessage
+                        }).FirstOrDefault());
+                }
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                //var errorMessage = string.Join(@",", errors);
-                return Json(errors, "application/json; charset=utf-8");
+                return Json(errors);
             }
 
             var accountBook = new AccountBook
