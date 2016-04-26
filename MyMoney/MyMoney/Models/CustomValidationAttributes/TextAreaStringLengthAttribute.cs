@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace MyMoney.Models.CustomValidationAttributes
 {
-    public class TextAreaStringLengthAttribute : ValidationAttribute
+    public sealed class TextAreaStringLengthAttribute : ValidationAttribute
     {
         private int _length;
 
