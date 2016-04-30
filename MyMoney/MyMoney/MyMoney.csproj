@@ -197,6 +197,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Backend\BackendAreaRegistration.cs" />
+    <Compile Include="Areas\Backend\Controllers\AccountBooksController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -204,6 +206,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\StringExtension.cs" />
     <Compile Include="Models\AccountBook.cs" />
     <Compile Include="Models\AccountingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -235,6 +238,12 @@
     <Content Include="Scripts\AjaxEventHandlers.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Backend\Views\web.config" />
+    <Content Include="Areas\Backend\Views\AccountBooks\Create.cshtml" />
+    <Content Include="Areas\Backend\Views\AccountBooks\Delete.cshtml" />
+    <Content Include="Areas\Backend\Views\AccountBooks\Details.cshtml" />
+    <Content Include="Areas\Backend\Views\AccountBooks\Edit.cshtml" />
+    <Content Include="Areas\Backend\Views\AccountBooks\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -287,7 +296,10 @@
     <Content Include="Views\Accounting\ShowHistory.cshtml" />
     <Content Include="Views\Accounting\Add.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Backend\Models\" />
+    <Folder Include="Areas\Backend\Views\Shared\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

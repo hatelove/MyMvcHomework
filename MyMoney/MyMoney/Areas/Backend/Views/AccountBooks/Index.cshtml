@@ -1,0 +1,54 @@
+﻿@model IEnumerable<MyMoney.Models.AccountBook>
+@using MyMoney.Helper;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AccountingLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@*不確定直接改 bootstrap css 好不好*@
+<table class="table" style="table-layout: fixed">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoryyy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amounttt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dateee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarkkk)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoryyy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amounttt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dateee)
+            </td>
+            <td style="word-wrap:break-word">
+                @Html.DisplayFor(modelItem => item.Remarkkk)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

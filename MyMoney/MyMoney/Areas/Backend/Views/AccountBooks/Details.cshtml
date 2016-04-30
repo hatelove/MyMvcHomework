@@ -1,0 +1,51 @@
+﻿@model MyMoney.Models.AccountBook
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AccountingLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AccountBook</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Categoryyy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoryyy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amounttt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amounttt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dateee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dateee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remarkkk)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarkkk)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
