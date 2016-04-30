@@ -20,6 +20,7 @@ namespace MyMoney.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult AddForAjax(AccountingViewModel pageData)
         {
             if (!ModelState.IsValid)
@@ -57,6 +58,7 @@ namespace MyMoney.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Add(AccountingViewModel pageData)
         {
             if (!ModelState.IsValid)
