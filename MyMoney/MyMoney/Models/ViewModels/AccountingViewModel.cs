@@ -15,10 +15,12 @@ namespace MyMoney.Models.ViewModels
 
         [Display(Name = "日期")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required]
         [DateBeforeToday(ErrorMessage = "{0}不可大於今天")]
         public DateTime Date { get; set; }
+
+        public Guid Id { get; set; }
 
         [Display(Name = "備註")]
         [DataType(DataType.MultilineText)]

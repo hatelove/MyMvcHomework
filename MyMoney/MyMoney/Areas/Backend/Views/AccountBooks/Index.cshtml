@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MyMoney.Models.AccountBook>
+﻿@model IEnumerable<MyMoney.Models.ViewModels.AccountingViewModel>
 @using MyMoney.Helper;
 @{
     ViewBag.Title = "Index";
@@ -14,16 +14,16 @@
 <table class="table" style="table-layout: fixed">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Categoryyy)
+            @Html.DisplayNameFor(model => model.Type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Amounttt)
+            @Html.DisplayNameFor(model => model.Amount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Dateee)
+            @Html.DisplayNameFor(model => model.Date)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Remarkkk)
+            @Html.DisplayNameFor(model => model.Remark)
         </th>
         <th></th>
     </tr>
@@ -32,16 +32,16 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Categoryyy)
+                @Html.DisplayFor(modelItem => item.Type)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Amounttt)
+                @Html.DisplayFor(modelItem => item.Amount)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Dateee)
+                @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td style="word-wrap:break-word">
-                @Html.DisplayFor(modelItem => item.Remarkkk)
+                @Html.DisplayFor(modelItem => item.Remark)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

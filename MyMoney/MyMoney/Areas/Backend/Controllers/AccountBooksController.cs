@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MyMoney.Models;
+using MyMoney.Models.Enums;
+using MyMoney.Models.ViewModels;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using MyMoney.Models;
 
 namespace MyMoney.Areas.Backend.Controllers
 {
-    [Authorize(Users ="jay.hatelove@gmail.com")]
+    [Authorize(Users = "jay.hatelove@gmail.com")]
     public class AccountBooksController : Controller
     {
         private AccountingModels db = new AccountingModels();
@@ -18,10 +18,11 @@ namespace MyMoney.Areas.Backend.Controllers
         // GET: Backend/AccountBooks
         public ActionResult Index()
         {
-            return View(db.AccountBook
-                .OrderByDescending(x => x.Dateee)
-                .Take(20)
-                .ToList());
+            var models = db.AccountBook.OrderByDescending(x => x.Dateee).Take(20)
+                .ToList()
+                .Select(x => MapAccoutBookToAccountingViewModel(x));
+
+            return View(models);
         }
 
         // GET: Backend/AccountBooks/Details/5
@@ -46,7 +47,7 @@ namespace MyMoney.Areas.Backend.Controllers
         }
 
         // POST: Backend/AccountBooks/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -75,23 +76,50 @@ namespace MyMoney.Areas.Backend.Controllers
             {
                 return HttpNotFound();
             }
-            return View(accountBook);
+
+            var viewModel = this.MapAccoutBookToAccountingViewModel(accountBook);
+            return View(viewModel);
+        }
+
+        private AccountingViewModel MapAccoutBookToAccountingViewModel(AccountBook accountBook)
+        {
+            return new AccountingViewModel
+            {
+                Amount = accountBook.Amounttt,
+                Date = accountBook.Dateee,
+                Remark = accountBook.Remarkkk,
+                Type = (AccountingType)accountBook.Categoryyy,
+                Id = accountBook.Id
+            };
+        }
+
+        private AccountBook MapAccountingViewModelToAccountBook(AccountingViewModel viewModel)
+        {
+            return new AccountBook
+            {
+                Id = viewModel.Id,
+                Amounttt = viewModel.Amount,
+                Categoryyy = (int)viewModel.Type,
+                Dateee = viewModel.Date,
+                Remarkkk = viewModel.Remark
+            };
         }
 
         // POST: Backend/AccountBooks/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Categoryyy,Amounttt,Dateee,Remarkkk")] AccountBook accountBook)
+        public ActionResult Edit([Bind(Include = "Id,Type,Amount,Date,Remark")] AccountingViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
+                var accountBook = this.MapAccountingViewModelToAccountBook(viewModel);
                 db.Entry(accountBook).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(accountBook);
+            return View(viewModel);
         }
 
         // GET: Backend/AccountBooks/Delete/5
