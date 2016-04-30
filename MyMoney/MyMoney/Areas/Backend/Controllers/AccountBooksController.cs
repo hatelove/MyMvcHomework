@@ -54,17 +54,19 @@ namespace MyMoney.Areas.Backend.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Categoryyy,Amounttt,Dateee,Remarkkk")] AccountBook accountBook)
+        public ActionResult Create([Bind(Include = "Id,Type,Amount,Date,Remark")] AccountingViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
+                var accountBook = this.MapAccountingViewModelToAccountBook(viewModel);
+
                 accountBook.Id = Guid.NewGuid();
                 db.AccountBook.Add(accountBook);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(accountBook);
+            return View(viewModel);
         }
 
         // GET: Backend/AccountBooks/Edit/5
