@@ -32,12 +32,15 @@ namespace MyMoney.Areas.Backend.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             AccountBook accountBook = db.AccountBook.Find(id);
             if (accountBook == null)
             {
                 return HttpNotFound();
             }
-            return View(accountBook);
+
+            var viewModel = this.MapAccoutBookToAccountingViewModel(accountBook);
+            return View(viewModel);
         }
 
         // GET: Backend/AccountBooks/Create
