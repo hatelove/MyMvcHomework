@@ -10,6 +10,7 @@ using MyMoney.Models;
 
 namespace MyMoney.Areas.Backend.Controllers
 {
+    [Authorize(Users ="jay.hatelove@gmail.com")]
     public class AccountBooksController : Controller
     {
         private AccountingModels db = new AccountingModels();
