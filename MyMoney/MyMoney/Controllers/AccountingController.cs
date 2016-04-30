@@ -1,4 +1,5 @@
 ﻿using MyMoney.Models;
+using MyMoney.Models.CustomValidationAttributes;
 using MyMoney.Models.Enums;
 using MyMoney.Models.ViewModels;
 using System;
@@ -20,7 +21,7 @@ namespace MyMoney.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [AuthorizedPlus]
         public ActionResult AddForAjax(AccountingViewModel pageData)
         {
             if (!ModelState.IsValid)
@@ -58,7 +59,7 @@ namespace MyMoney.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [AuthorizedPlus]
         public ActionResult Add(AccountingViewModel pageData)
         {
             if (!ModelState.IsValid)

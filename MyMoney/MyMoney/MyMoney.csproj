@@ -207,6 +207,7 @@
     <Compile Include="Models\AccountBook.cs" />
     <Compile Include="Models\AccountingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CustomValidationAttributes\AuthorizedPlusAttribute.cs" />
     <Compile Include="Models\CustomValidationAttributes\DateBeforeTodayAttribute.cs" />
     <Compile Include="Models\CustomValidationAttributes\TextAreaStringLengthAttribute.cs" />
     <Compile Include="Models\Enums\AccountingType.cs" />
