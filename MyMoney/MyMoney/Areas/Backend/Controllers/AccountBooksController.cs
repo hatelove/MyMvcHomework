@@ -134,7 +134,9 @@ namespace MyMoney.Areas.Backend.Controllers
             {
                 return HttpNotFound();
             }
-            return View(accountBook);
+
+            var viewModel = this.MapAccoutBookToAccountingViewModel(accountBook);
+            return View(viewModel);
         }
 
         // POST: Backend/AccountBooks/Delete/5
