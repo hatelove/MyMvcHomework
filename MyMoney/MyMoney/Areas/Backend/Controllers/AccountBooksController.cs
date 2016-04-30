@@ -1,4 +1,5 @@
 ﻿using MyMoney.Models;
+using MyMoney.Models.CustomValidationAttributes;
 using MyMoney.Models.Enums;
 using MyMoney.Models.ViewModels;
 using System;
@@ -10,7 +11,7 @@ using System.Web.Mvc;
 
 namespace MyMoney.Areas.Backend.Controllers
 {
-    [Authorize(Users = "jay.hatelove@gmail.com")]
+    [AuthorizeForBackend(Users = "jay.hatelove@gmail.com")]
     public class AccountBooksController : Controller
     {
         private AccountingModels db = new AccountingModels();
