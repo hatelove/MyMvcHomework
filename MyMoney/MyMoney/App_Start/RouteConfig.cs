@@ -14,6 +14,12 @@ namespace MyMoney
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Accouting",
+                url: "skilltree",
+                defaults: new { controller = "Accounting", action = "Add" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
