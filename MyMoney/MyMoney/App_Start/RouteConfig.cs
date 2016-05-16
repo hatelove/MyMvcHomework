@@ -15,8 +15,8 @@ namespace MyMoney
 
             routes.MapRoute(
                 name: "Accouting",
-                url: "skilltree",
-                defaults: new { controller = "Accounting", action = "Add" }
+                url: "skilltree/{year}/{month}",
+                defaults: new { controller = "Accounting", action = "Add", year = UrlParameter.Optional, month = UrlParameter.Optional }
             );
 
             routes.MapRoute(

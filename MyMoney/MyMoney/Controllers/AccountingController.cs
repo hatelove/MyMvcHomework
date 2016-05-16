@@ -82,11 +82,34 @@ namespace MyMoney.Controllers
             return RedirectToAction("Add");
         }
 
-        public ActionResult ShowHistory()
+        public ActionResult ShowHistory(int? year, int? month)
         {
-            IQueryable<AccountingViewModel> accountingBooks = GetLastAccountings(10);
+            if (year.HasValue && month.HasValue)
+            {
+                var startDate = new DateTime(year.Value, month.Value, 1);
+                var endDate = startDate.AddMonths(1);
 
-            return View(accountingBooks);
+                IQueryable<AccountingViewModel> accountingBooks = this.accountDbContext.AccountBook
+                    .Where(x => x.Dateee >= startDate)
+                    .Where(x => x.Dateee < endDate)
+                    .OrderByDescending(x => x.Dateee)
+                            .Take(10)
+                            .Select(x =>
+                            new AccountingViewModel
+                            {
+                                Amount = x.Amounttt,
+                                Date = x.Dateee,
+                                Remark = x.Remarkkk,
+                                Type = (AccountingType)x.Categoryyy
+                            });
+
+                return View(accountingBooks);
+            }
+            else
+            {
+                var result = this.GetLastAccountings(10);
+                return View(result);
+            }
         }
 
         private IQueryable<AccountingViewModel> GetLastAccountings(int recordCount)
